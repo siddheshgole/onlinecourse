@@ -1,0 +1,38 @@
+{% extends "onlinecourse/base.html" %}
+
+{% block title %}
+{{ course.name }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+
+    <div class="card">
+        <div class="card-body">
+
+            <h1 class="card-title">{{ course.name }}</h1>
+
+            <p class="card-text">
+                {{ course.description }}
+            </p>
+
+            <h3 class="mt-4">Lessons</h3>
+
+            <div class="list-group">
+                {% for lesson in course.lesson_set.all %}
+                    <div class="list-group-item">
+                        <h5>{{ lesson.name }}</h5>
+                        <p>{{ lesson.description }}</p>
+                    </div>
+                {% empty %}
+                    <div class="alert alert-info">
+                        No lessons available.
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
